@@ -5,6 +5,9 @@
  *      Author: gino
  */
 
+#include <stdio.h>
+#include <string.h>
+
 #include "../inc/zn_tcp.h"
 
 #define SERVER_HOSTNAME "localhost"
