@@ -17,8 +17,7 @@
 #include "zn_tcp.h"
 
 int zn_tcpServer_init(const char *host, const int port, const int backlog) {
-	if (NULL == host || port <= 0)
-		return -1;
+	if (NULL == host || port <= 0) return -1;
 
 	int ret = 0, recvbuf = 128 * 1024, sendbuf = 128 * 1024;
 	int listen_sock = 0;
@@ -29,8 +28,7 @@ int zn_tcpServer_init(const char *host, const int port, const int backlog) {
 	ling.l_linger = 0;
 	ling.l_onoff = 1;
 
-	if ((listen_sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-		return -2;
+	if ((listen_sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) return -2;
 
 	memset(&sAddr, 0, sizeof(struct sockaddr_in));
 
@@ -46,10 +44,10 @@ int zn_tcpServer_init(const char *host, const int port, const int backlog) {
 	setsockopt(listen_sock, SOL_SOCKET, SO_RCVBUF, &recvbuf, sizeof(int));
 	setsockopt(listen_sock, SOL_SOCKET, SO_SNDBUF, &sendbuf, sizeof(int));
 	setsockopt(listen_sock, SOL_SOCKET, SO_LINGER, (const char *) &ling,
-			sizeof(struct linger));
+	        sizeof(struct linger));
 
 	if ((ret = bind(listen_sock, (struct sockaddr *) &sAddr,
-			sizeof(struct sockaddr_in))) < 0) {
+	        sizeof(struct sockaddr_in))) < 0) {
 		close(listen_sock);
 		return -3;
 	}
@@ -68,8 +66,7 @@ int zn_tcpClient_init() {
 	struct linger ling;
 	ling.l_linger = 0;
 	ling.l_onoff = 1;
-	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0)
-		return -2;
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) return -2;
 
 	setsockopt(sock, SOL_SOCKET, SO_LINGER, (const char *) &ling, sizeof(ling));
 
@@ -77,8 +74,7 @@ int zn_tcpClient_init() {
 }
 
 int zn_tcpClinet_connet(int sock, const char *host, const int port) {
-	if (sock <= 0 || NULL == host || port <= 0)
-		return -1;
+	if (sock <= 0 || NULL == host || port <= 0) return -1;
 
 	int ret = 0;
 	struct sockaddr_in sAddr;
@@ -101,14 +97,13 @@ int zn_tcpClinet_connet(int sock, const char *host, const int port) {
 int zn_tcpServer_accept(int listenSock, struct sockaddr_in *clientAddr) {
 	int clientSock = 0;
 	int len = sizeof(struct sockaddr_in);
-	clientSock = accept(listenSock, (struct sockaddr *) clientAddr, &len);
+	clientSock = accept(listenSock, (struct sockaddr *) clientAddr, (socklen_t *)&len);
 
 	return (clientSock < 0) ? -1 : clientSock;
 }
 
-int zn_tcpSend(int sock, char *sendBuf, int len) {
-	if (sock <= 0 || NULL == sendBuf || len <= 0)
-		return -1;
+int zn_tcpSend(int sock, void *sendBuf, int len) {
+	if (sock <= 0 || NULL == sendBuf || len <= 0) return -1;
 
 	int ret = 0;
 	int dataLeft = len;
@@ -129,9 +124,8 @@ int zn_tcpSend(int sock, char *sendBuf, int len) {
 	return sendTotal;
 }
 
-int zn_tcpRecv(int sock, char *recvBuf, int len, int timeout) {
-	if (sock <= 0 || NULL == recvBuf || len <= 0)
-		return -1;
+int zn_tcpRecv(int sock, void *recvBuf, int len, int timeout) {
+	if (sock <= 0 || NULL == recvBuf || len <= 0) return -1;
 
 	int ret = 0;
 	fd_set fds;
@@ -146,16 +140,13 @@ int zn_tcpRecv(int sock, char *recvBuf, int len, int timeout) {
 	}
 
 	ret = select(sock + 1, &fds, NULL, NULL, interval);
-	if (FD_ISSET(sock, &fds))
-		ret = recv(sock, recvBuf, len, 0);
+	if (FD_ISSET(sock, &fds)) ret = recv(sock, recvBuf, len, 0);
 
 	return (ret > 0) ? ret : -2;
 }
 
-int zn_tcpDestory(int sock) {
-	int ret = 0;
-	if (sock <= 0)
-		return -1;
-	ret = close(sock);
-	return (ret == 0) ? 0 : 1;
+int zn_tcpDestory(const int sock) {
+
+	if (sock <= 0) return -1;
+	return (close(sock) == 0) ? 0 : 1;
 }
