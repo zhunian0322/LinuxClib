@@ -1,9 +1,10 @@
-/*
- * zn_udp.c
- *
- *  Created on: Sep 30, 2017
- *      Author: gino
- */
+/** 
+* @file zn_udp.c
+* @brief 基于 linux API 封装 UDP 接口
+* @author zhunian0322@163.com
+* @date 17:44 2017/10/21
+* @version 1
+*/
 
 #include <stdio.h>
 #include <sys/socket.h>

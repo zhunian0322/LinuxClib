@@ -1,9 +1,10 @@
-/*
- * zn_tcp.c
- *
- *  Created on: Sep 29, 2017
- *      Author: gino
- */
+/** 
+* @file zn_tcp.c
+* @brief 基于 linux API 封装 TCP 接口
+* @author zhunian0322@163.com
+* @date 17:44 2017/10/21
+* @version 1
+*/
 
 #include <stdio.h>
 #include <netdb.h>
@@ -66,7 +67,7 @@ int zn_tcpClient_init() {
 	struct linger ling;
 	ling.l_linger = 0;
 	ling.l_onoff = 1;
-	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) return -2;
+	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) return -1;
 
 	setsockopt(sock, SOL_SOCKET, SO_LINGER, (const char *) &ling, sizeof(ling));
 
@@ -148,5 +149,5 @@ int zn_tcpRecv(int sock, void *recvBuf, int len, int timeout) {
 int zn_tcpDestory(const int sock) {
 
 	if (sock <= 0) return -1;
-	return (close(sock) == 0) ? 0 : 1;
+	return (close(sock) == 0) ? 0 : -2;
 }
