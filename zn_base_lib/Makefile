@@ -3,7 +3,7 @@
 MAJOR_VERSION = 
 MINOR_VERSION = 
 VERSION = ${MAJOR_VERSION}.${MINOR_VERSION}
-NET_A_LIB_C_TARGE = libbase.a
+BASE_A_LIB_C_TARGE = libbase.a
 
 SAMPLE_TIME = time
 
@@ -26,13 +26,13 @@ AR = ar
 CFLAGS = -g -Wall -std=gnu99 -static -I${INCLUDES}
 
 
-all:${NET_A_LIB_C_TARGE} \
+all:${BASE_A_LIB_C_TARGE} \
 	${SAMPLE_TIME}
 
-${NET_A_LIB_C_TARGE}:${LIB_OBJS}
-	${AR} cru ${NET_A_LIB_C_TARGE} ${LIB_OBJS}
+${BASE_A_LIB_C_TARGE}:${LIB_OBJS}
+	${AR} cru ${BASE_A_LIB_C_TARGE} ${LIB_OBJS}
 	test -d lib || mkdir lib
-	mv ${NET_A_LIB_C_TARGE} lib/${NET_A_LIB_C_TARGE}
+	mv ${BASE_A_LIB_C_TARGE} lib/${BASE_A_LIB_C_TARGE}
 	
 ${LIB_OBJS}:${LIB_SOURCES}
 	${CC} -c ${CFLAGS} $*.c -o $@ ${LIBS}
