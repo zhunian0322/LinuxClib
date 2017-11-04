@@ -1,6 +1,6 @@
 /** 
 * @file zn_log.h
-* @brief »ùÓÚ linux API ·â×°ÈÕÖ¾Ïà¹Ø½Ó¿Ú
+* @brief åŸºäº linux API å°è£…æ—¥å¿—ç›¸å…³æ¥å£
 * @author zhunian0322@163.com
 * @date 19:22 2017/10/31
 * @version 1
@@ -12,81 +12,81 @@
 
 #include <stdint.h>
 
-/** ÈÕÖ¾ÅäÖÃÏî */
+/** æ—¥å¿—é…ç½®é¡¹ */
 struct zn_log_configs;
 typedef struct zn_log_configs zn_log_config;
 
-/** ÈÕÖ¾µÈ¼¶ */
+/** æ—¥å¿—ç­‰çº§ */
 typedef enum {
-	ZLL_CUSTOM, 	/**< ×Ô¶¨Òå¼¶±ğ£¬½«ÈÕÖ¾´òÉÏ×Ô¶¨Òå±ê¼Ç */
-	ZLL_DEBUG, 		/**< µ÷ÊÔ¼¶±ğ */
-	ZLL_WARNIG, 	/**< ¾¯¸æ */
-	ZLL_ERROR			/**< ´íÎó */
+	ZLL_CUSTOM, 	/**< è‡ªå®šä¹‰çº§åˆ«ï¼Œå°†æ—¥å¿—æ‰“ä¸Šè‡ªå®šä¹‰æ ‡è®° */
+	ZLL_DEBUG, 		/**< è°ƒè¯•çº§åˆ« */
+	ZLL_WARNIG, 	/**< è­¦å‘Š */
+	ZLL_ERROR			/**< é”™è¯¯ */
 } ZN_LOG_LEVEL;
 
-/** ÈÕÖ¾´¦Àí±êÊ¶ */
+/** æ—¥å¿—å¤„ç†æ ‡è¯† */
 typedef enum {
-	ZLSF_NOT, 		/**< ²»´¦Àí£¬²»±£´æµ½ÎÄ¼şÒ²²»Êä³öµ½ÖÕ¶Ë */
-	ZLSF_PRINT, 	/**< Êä³öµ½ÖÕ¶Ë */
-	ZLSF_FLASH, 	/**< ±£´æµ½ÎÄ¼ş*/
-	ZLSF_FULL			/**< ¼´Êä³öµ½ÖÕ¶ËÒ²±£´æµ½ÎÄ¼ş */
+	ZLSF_NOT, 		/**< ä¸å¤„ç†ï¼Œä¸ä¿å­˜åˆ°æ–‡ä»¶ä¹Ÿä¸è¾“å‡ºåˆ°ç»ˆç«¯ */
+	ZLSF_PRINT, 	/**< è¾“å‡ºåˆ°ç»ˆç«¯ */
+	ZLSF_FLASH, 	/**< ä¿å­˜åˆ°æ–‡ä»¶*/
+	ZLSF_FULL			/**< å³è¾“å‡ºåˆ°ç»ˆç«¯ä¹Ÿä¿å­˜åˆ°æ–‡ä»¶ */
 } ZN_LOG_SAVE_FLAG;
 
 /** 
- *  @breif	ÒÔ DEBUG ¼¶±ğ´òÓ¡ÈÕÖ¾  
- *  @param[in] zlc  zn_log_config ½á¹¹Ìå£¬ÈÕÖ¾ÅäÖÃÏî  
- *  @param[in] format ÈÕÖ¾ÄÚÈİ
+ *  @breif	ä»¥ DEBUG çº§åˆ«æ‰“å°æ—¥å¿—  
+ *  @param[in] zlc  zn_log_config ç»“æ„ä½“ï¼Œæ—¥å¿—é…ç½®é¡¹  
+ *  @param[in] format æ—¥å¿—å†…å®¹
  */
 #define ZNLOG_DEBUG(zlc,format, ...) zn_log(__FILE__,__LINE__,zlc,ZLL_DEBUG,NULL,format, ##__VA_ARGS__)
 
 /** 
- *  @breif	ÒÔ WARNIG ¼¶±ğ´òÓ¡ÈÕÖ¾  
- *  @param[in] zlc  zn_log_config ½á¹¹Ìå£¬ÈÕÖ¾ÅäÖÃÏî  
- *  @param[in] format ÈÕÖ¾ÄÚÈİ
+ *  @breif	ä»¥ WARNIG çº§åˆ«æ‰“å°æ—¥å¿—  
+ *  @param[in] zlc  zn_log_config ç»“æ„ä½“ï¼Œæ—¥å¿—é…ç½®é¡¹  
+ *  @param[in] format æ—¥å¿—å†…å®¹
  */
 #define ZNLOG_WARNIG(zlc,format, ...) zn_log(__FILE__,__LINE__,zlc,ZLL_WARNIG,NULL,format, ##__VA_ARGS__)
 
 /** 
- *  @breif	ÒÔ ERROR ¼¶±ğ´òÓ¡ÈÕÖ¾  
- *  @param[in] zlc  zn_log_config ½á¹¹Ìå£¬ÈÕÖ¾ÅäÖÃÏî  
- *  @param[in] format ÈÕÖ¾ÄÚÈİ
+ *  @breif	ä»¥ ERROR çº§åˆ«æ‰“å°æ—¥å¿—  
+ *  @param[in] zlc  zn_log_config ç»“æ„ä½“ï¼Œæ—¥å¿—é…ç½®é¡¹  
+ *  @param[in] format æ—¥å¿—å†…å®¹
  */
 #define ZNLOG_ERROR(zlc,format, ...) zn_log(__FILE__,__LINE__,zlc,ZLL_ERROR,NULL,format, ##__VA_ARGS__)
 
 /** 
- *  @breif	ÒÔ CUSTOM ¼¶±ğ´òÓ¡ÈÕÖ¾  
- *  @param[in] zlc  zn_log_config ½á¹¹Ìå£¬ÈÕÖ¾ÅäÖÃÏî  
- *  @param[in] tag  ÈÕÖ¾±êÇ©£¬µÈÍ¬ÓÚÈÕÖ¾¼¶±ğ±êÇ©
- *  @param[in] format ÈÕÖ¾ÄÚÈİ
+ *  @breif	ä»¥ CUSTOM çº§åˆ«æ‰“å°æ—¥å¿—  
+ *  @param[in] zlc  zn_log_config ç»“æ„ä½“ï¼Œæ—¥å¿—é…ç½®é¡¹  
+ *  @param[in] tag  æ—¥å¿—æ ‡ç­¾ï¼Œç­‰åŒäºæ—¥å¿—çº§åˆ«æ ‡ç­¾
+ *  @param[in] format æ—¥å¿—å†…å®¹
  */
 #define ZNLOG_CUSTOM(zlc,tag,format, ...) zn_log(__FILE__,__LINE__,zlc,ZLL_CUSTOM,tag,format, ##__VA_ARGS__)
 
 /** 
- *  @breif	ÈÕÖ¾API³õÊ¼»¯  
- *  @param[in] fileName  ±£´æµÄÈÕÖ¾Ãû£¬ÈçÈô²»ĞèÒª±£´æÎªÈÕÖ¾¿ÉÒÔ½«¸Ã²ÎÊıÉèÎª NULL  
- *  @param[in] saveFlag  ±£´æ±êÖ¾£¬²Î¿¼  ÈÕÖ¾´¦Àí±êÊ¶  ZN_LOG_SAVE_FLAG
- *  @param[in] logBufSize ÈÕÖ¾»º³åÇø×î´ó·¶Î§
- *  @return  ³É¹¦·µ»ØÒ»¸öÈÕÖ¾ÅäÖÃÏî½á¹¹ÌåÖ¸Õë£¬Ê§°Ü·µ»ØNULL
+ *  @breif	æ—¥å¿—APIåˆå§‹åŒ–  
+ *  @param[in] fileName  ä¿å­˜çš„æ—¥å¿—åï¼Œå¦‚è‹¥ä¸éœ€è¦ä¿å­˜ä¸ºæ—¥å¿—å¯ä»¥å°†è¯¥å‚æ•°è®¾ä¸º NULL  
+ *  @param[in] saveFlag  ä¿å­˜æ ‡å¿—ï¼Œå‚è€ƒ  æ—¥å¿—å¤„ç†æ ‡è¯†  ZN_LOG_SAVE_FLAG
+ *  @param[in] logBufSize æ—¥å¿—ç¼“å†²åŒºæœ€å¤§èŒƒå›´
+ *  @return  æˆåŠŸè¿”å›ä¸€ä¸ªæ—¥å¿—é…ç½®é¡¹ç»“æ„ä½“æŒ‡é’ˆï¼Œå¤±è´¥è¿”å›NULL
  */
 zn_log_config * zn_log_init(uint8_t *fileName, ZN_LOG_SAVE_FLAG saveFlag,
         uint16_t logBufSize);
 
 /** 
- *  @breif	ÈÕÖ¾´¦Àíº¯Êı  
- *  @param[in] fileName  ´¥·¢ÈÕÖ¾µÄÎÄ¼şÃû  
- *  @param[in] line  		 ´¥·¢ÈÕÖ¾ËùÔÚĞĞ
- *  @param[in] zlc 			 ÈÕÖ¾ÅäÖÃÏî£¬ÓÉ zn_log_init ·µ»Ø
- *  @param[in] level		 ÈÕÖ¾¼¶±ğ, ²Î¿¼ ÈÕÖ¾µÈ¼¶ ZN_LOG_LEVEL
- *  @param[in] tag			 ÈÕÖ¾±êÇ©£¬µ±ÈÕÖ¾µÈ¼¶Îª×Ô¶¨ÒåÊ±²ÅÓĞÓÃ£¬ÆäËüÈÕÖ¾µÈ¼¶Ê±½«¸Ã²ÎÊıÉèÎª NULL ¼´¿É
- *  @param[in] format    ÈÕÖ¾ÄÚÈİ
- *  @note  ²»½¨ÒéÊ¹ÓÃ¸Ãº¯Êı£¬ĞèÒªÈÕÖ¾¹¦ÄÜ£¬Ê¹ÓÃÈÕÖ¾´òÓ¡ºê¼´¿É
+ *  @breif	æ—¥å¿—å¤„ç†å‡½æ•°  
+ *  @param[in] fileName  è§¦å‘æ—¥å¿—çš„æ–‡ä»¶å  
+ *  @param[in] line  		 è§¦å‘æ—¥å¿—æ‰€åœ¨è¡Œ
+ *  @param[in] zlc 			 æ—¥å¿—é…ç½®é¡¹ï¼Œç”± zn_log_init è¿”å›
+ *  @param[in] level		 æ—¥å¿—çº§åˆ«, å‚è€ƒ æ—¥å¿—ç­‰çº§ ZN_LOG_LEVEL
+ *  @param[in] tag			 æ—¥å¿—æ ‡ç­¾ï¼Œå½“æ—¥å¿—ç­‰çº§ä¸ºè‡ªå®šä¹‰æ—¶æ‰æœ‰ç”¨ï¼Œå…¶å®ƒæ—¥å¿—ç­‰çº§æ—¶å°†è¯¥å‚æ•°è®¾ä¸º NULL å³å¯
+ *  @param[in] format    æ—¥å¿—å†…å®¹
+ *  @note  ä¸å»ºè®®ä½¿ç”¨è¯¥å‡½æ•°ï¼Œéœ€è¦æ—¥å¿—åŠŸèƒ½ï¼Œä½¿ç”¨æ—¥å¿—æ‰“å°å®å³å¯
  */
 void zn_log(char *filename, int line, zn_log_config * zlc, uint8_t level,
         const uint8_t *tag, char *format, ...);
 
 /** 
- *  @breif	ÈÕÖ¾ÅäÖÃÏîAPIÏú»Ù 
- *  @param[in] logConfig  ÈÕÖ¾ÅäÖÃÏî
+ *  @breif	æ—¥å¿—é…ç½®é¡¹APIé”€æ¯ 
+ *  @param[in] logConfig  æ—¥å¿—é…ç½®é¡¹
  */
 void zn_log_destory(zn_log_config ** logConfig);
 
