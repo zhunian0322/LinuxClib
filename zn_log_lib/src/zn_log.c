@@ -1,10 +1,11 @@
 /** 
- * @file zn_log.c
- * @brief ���� linux API ��װ��־��ؽӿ�
- * @author zhunian0322@163.com
- * @date 19:22 2017/10/31
- * @version 1
- */
+* @file zn_log.c
+* @brief 基于 linux API 封装日志相关接口
+* @author zhunian0322@163.com
+* @date 19:22 2017/10/31
+* @version 1
+*/
+
 
 #include <stdio.h>
 #include <stdint.h>
