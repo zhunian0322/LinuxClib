@@ -1,0 +1,25 @@
+;连接MQTT服务器相关参数
+[MQTT]
+SeverHost = 192.168.8.88
+port = 1883
+
+;连接HTTP服务器相关参数
+[HTTP]
+SeverHost = www.csdn.net
+port = 8989
+
+;本地 TCP 相关参数
+[local TCP]
+ip = 0.0.0.0
+port = 5698
+
+;本地 UDP 相关参数
+[local UDP]
+ip = 0.0.0.0
+port = 56897
+
+;串口相关参数
+[serial]
+SerialName = "/dev/ttyUSB0"
+speed = 115200
+
