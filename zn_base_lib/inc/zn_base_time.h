@@ -6,8 +6,8 @@
 * @version 1
 */
 
-#ifndef ZN_BASE_H_
-#define ZN_BASE_H_
+#ifndef ZN_BASE_TIME_H_
+#define ZN_BASE_TIME_H_
 
 #include <sys/time.h>
 
@@ -106,4 +106,4 @@ void zn_base_getSystenNowTime_format(char *result,int len,const char *format,zn_
  */
 ZN_TIMEZONE zn_base_getSystemTimeZone(zn_time_info zti);
 
-#endif /* ZN_BASE_H_ */
+#endif /* ZN_BASE_TIME_H_ */

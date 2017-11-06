@@ -6,10 +6,11 @@ VERSION = ${MAJOR_VERSION}.${MINOR_VERSION}
 BASE_A_LIB_C_TARGE = libbase.a
 
 SAMPLE_TIME = time
-
+SAMPLE_SYSTEM = system
 
 SAMPLE_DIR = example
 SAMPLE_SOURCES_TIME = ${SAMPLE_DIR}/${SAMPLE_TIME}.c
+SAMPLE_SOURCES_SYSTEM = ${SAMPLE_DIR}/${SAMPLE_SYSTEM}.c
 
 
 
@@ -27,7 +28,8 @@ CFLAGS = -g -Wall -std=gnu99 -static -I${INCLUDES}
 
 
 all:${BASE_A_LIB_C_TARGE} \
-	${SAMPLE_TIME}
+	${SAMPLE_TIME} \
+	${SAMPLE_SYSTEM}
 
 ${BASE_A_LIB_C_TARGE}:${LIB_OBJS}
 	${AR} cru ${BASE_A_LIB_C_TARGE} ${LIB_OBJS}
@@ -42,7 +44,12 @@ ${SAMPLE_TIME}:
 	${CC} ${SAMPLE_TIME}.o -o ${SAMPLE_TIME} -L lib -lbase
 	test -d ${SAMPLE_DIR}/bin || mkdir ${SAMPLE_DIR}/bin
 	mv ${SAMPLE_TIME} ${SAMPLE_DIR}/bin
-	
+
+${SAMPLE_SYSTEM}:
+	${CC} -c ${CFLAGS} ${SAMPLE_SOURCES_SYSTEM} ${LIBS}
+	${CC} ${SAMPLE_SYSTEM}.o -o ${SAMPLE_SYSTEM} -L lib -lbase
+	test -d ${SAMPLE_DIR}/bin || mkdir ${SAMPLE_DIR}/bin
+	mv ${SAMPLE_SYSTEM} ${SAMPLE_DIR}/bin
 
 clean:
 	rm -rf lib \
