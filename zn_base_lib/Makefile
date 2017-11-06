@@ -7,13 +7,19 @@ BASE_A_LIB_C_TARGE = libbase.a
 
 SAMPLE_TIME = time
 SAMPLE_SYSTEM = system
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev-gino
 
 SAMPLE_DIR = example
 SAMPLE_SOURCES_TIME = ${SAMPLE_DIR}/${SAMPLE_TIME}.c
 SAMPLE_SOURCES_SYSTEM = ${SAMPLE_DIR}/${SAMPLE_SYSTEM}.c
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dev-gino
 
 
 
@@ -47,7 +53,11 @@ ${SAMPLE_TIME}:
 	${CC} ${SAMPLE_TIME}.o -o ${SAMPLE_TIME} -L lib -lbase
 	test -d ${SAMPLE_DIR}/bin || mkdir ${SAMPLE_DIR}/bin
 	mv ${SAMPLE_TIME} ${SAMPLE_DIR}/bin
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> dev-gino
 ${SAMPLE_SYSTEM}:
 	${CC} -c ${CFLAGS} ${SAMPLE_SOURCES_SYSTEM} ${LIBS}
 	${CC} ${SAMPLE_SYSTEM}.o -o ${SAMPLE_SYSTEM} -L lib -lbase
