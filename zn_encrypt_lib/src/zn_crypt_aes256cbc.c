@@ -6,7 +6,7 @@
 * @version 1
 */
 
-
+#include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
@@ -82,7 +82,7 @@ char *aes256cbc_encrypt(const char *plaintext, char ciphertextBuf[], int ciphert
 
 	AES_cbc_encrypt(plaintextData, ciphertextData , setDataLen, &zn_aes_key.en_aesKey, iv, AES_ENCRYPT);
 
-	printf("ciphertext len %d\n",strlen(ciphertextData));
+	//printf("ciphertext len %d\n",strlen(ciphertextData));
 	char basestr[1024] = {'\0'};
 
 	int baseLen = base64_encode((char *)ciphertextData, setDataLen, basestr);
